@@ -32,18 +32,18 @@ class FinanceDatabase extends Dexie {
     super('PersonligOkonomiDB');
 
     this.version(1).stores({
-      accounts: '++id, type, isActive',
-      categories: '++id, type, parentId',
+      accounts: '++id, name, type, isActive',
+      categories: '++id, name, type, parentId',
       transactions:
         '++id, accountId, categoryId, date, type, recurringBillId, recurringSubscriptionId',
       budgets: '++id, categoryId, year, month',
-      bills: '++id, status, nextDueDate, categoryId',
-      subscriptions: '++id, status, nextBillingDate, categoryId',
-      incomeSources: '++id, type, isActive, accountId',
-      investments: '++id, type, accountId',
-      debts: '++id, type, status',
+      bills: '++id, name, status, nextDueDate, categoryId',
+      subscriptions: '++id, name, status, nextBillingDate, categoryId',
+      incomeSources: '++id, name, type, isActive, accountId',
+      investments: '++id, name, type, accountId',
+      debts: '++id, name, type, status',
       debtPayments: '++id, debtId, date',
-      goals: '++id, isActive',
+      goals: '++id, name, isActive',
       netWorthSnapshots: '++id, date',
     });
   }
