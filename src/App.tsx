@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AppLayout } from './components/layout/AppLayout';
 import DashboardPage from './pages/Dashboard';
