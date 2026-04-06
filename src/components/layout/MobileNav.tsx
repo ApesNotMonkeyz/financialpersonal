@@ -18,8 +18,8 @@ const mobileNavItems = [
 
 export function MobileNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 z-40">
-      <div className="flex items-center justify-around py-2">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-[hsl(var(--sidebar))] border-t border-gray-100 dark:border-gray-800 z-40 shadow-lg shadow-gray-200/50 dark:shadow-none">
+      <div className="flex items-center justify-around py-2 px-2">
         {mobileNavItems.map(({ to, icon: Icon, label, end }) => (
           <NavLink
             key={to}
@@ -27,10 +27,10 @@ export function MobileNav() {
             end={end}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center gap-1 px-3 py-1 rounded-md text-xs font-medium transition-colors',
+                'flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-[10px] font-medium transition-all',
                 isActive
-                  ? 'text-blue-600 dark:text-blue-400'
-                  : 'text-gray-500 dark:text-gray-400'
+                  ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                  : 'text-gray-400 dark:text-gray-500'
               )
             }
           >
