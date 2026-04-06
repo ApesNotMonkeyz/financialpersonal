@@ -50,6 +50,7 @@ export function TransactionForm({ initial, amount = 0, onAmountChange, onSubmit,
   const categories = txType === 'income' ? incomeCategories : expenseCategories;
 
   const handleFormSubmit = (data: FormValues) => {
+    if (amount <= 0) return;
     onSubmit({
       accountId: data.accountId,
       categoryId: data.categoryId,
@@ -91,6 +92,7 @@ export function TransactionForm({ initial, amount = 0, onAmountChange, onSubmit,
       <div className="space-y-1.5">
         <Label>Beløp *</Label>
         <AmountInput value={amount} onChange={onAmountChange ?? (() => {})} />
+        {amount <= 0 && <p className="text-xs text-red-500">Beløp må være større enn 0</p>}
       </div>
 
       <div className="space-y-1.5">
@@ -146,7 +148,7 @@ export function TransactionForm({ initial, amount = 0, onAmountChange, onSubmit,
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="outline" onClick={onCancel}>Avbryt</Button>
-        <Button type="submit">Lagre</Button>
+        <Button type="submit" disabled={amount <= 0}>Lagre</Button>
       </div>
     </form>
   );

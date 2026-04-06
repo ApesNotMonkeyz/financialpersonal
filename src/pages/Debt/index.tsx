@@ -174,7 +174,10 @@ export default function DebtPage() {
                       <div className="mt-2">
                         <div className="flex justify-between text-xs text-gray-500 mb-1">
                           <span>Nedbetalt {paidPct} %</span>
-                          {payoffMonths && <span>~{payoffMonths} måneder igjen</span>}
+                          {payoffMonths === null
+                            ? <span className="text-yellow-600">⚠ Avdrag for lavt til nedbetaling</span>
+                            : <span>~{payoffMonths} måneder igjen</span>
+                          }
                         </div>
                         <Progress value={paidPct} className="h-2" indicatorClassName="bg-green-500" />
                       </div>

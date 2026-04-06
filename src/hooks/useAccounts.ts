@@ -20,5 +20,17 @@ export async function updateAccount(id: number, data: Partial<Account>) {
 }
 
 export async function deleteAccount(id: number) {
-  return db.accounts.delete(id);
+  // Kaskadesletting: fjern alle tilknyttede data
+  return db.transaction('rw',
+    [db.accounts, db.transactions, db.bills, db.subscriptions, db.incomeSources, db.investments, db.debts],
+    async () => {
+      await db.transactions.where('accountId').equals(id).delete();
+      await db.bills.where('accountId').equals(id).modify({ accountId: undefined });
+      await db.subscriptions.where('accountId').equals(id).modify({ accountId: undefined });
+      await db.incomeSources.where('accountId').equals(id).delete();
+      await db.investments.where('accountId').equals(id).delete();
+      await db.debts.where('accountId').equals(id).modify({ accountId: undefined });
+      await db.accounts.delete(id);
+    }
+  );
 }

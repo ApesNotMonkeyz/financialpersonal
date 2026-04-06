@@ -83,11 +83,11 @@ export default function ReportsPage() {
           <div className="flex items-end gap-4">
             <div className="space-y-1.5">
               <Label>Fra</Label>
-              <Input type="date" value={from} onChange={e => setFrom(e.target.value)} className="w-40" />
+              <Input type="date" value={from} onChange={e => { if (e.target.value <= to) setFrom(e.target.value); }} className="w-40" />
             </div>
             <div className="space-y-1.5">
               <Label>Til</Label>
-              <Input type="date" value={to} onChange={e => setTo(e.target.value)} className="w-40" />
+              <Input type="date" value={to} onChange={e => { if (e.target.value >= from) setTo(e.target.value); }} className="w-40" />
             </div>
             <div className="flex gap-4 text-sm">
               <div>

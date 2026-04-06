@@ -30,8 +30,8 @@ export function useDashboardStats(year: number, month: number) {
 
     const totalAssets = accounts
       .filter(a => a.type !== 'credit' && a.type !== 'loan')
-      .reduce((s, a) => s + a.balance, 0)
-      + investments.reduce((s, i) => s + i.currentPrice * i.quantity, 0);
+      .reduce((s, a) => s + (a.balance ?? 0), 0)
+      + investments.reduce((s, i) => s + (i.currentPrice ?? 0) * (i.quantity ?? 0), 0);
 
     const totalLiabilities = debts.reduce((s, d) => s + d.currentBalance, 0)
       + accounts.filter(a => a.type === 'credit').reduce((s, a) => s + Math.abs(Math.min(0, a.balance)), 0);
